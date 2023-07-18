@@ -10,19 +10,19 @@ const Tabs = ({ state, setLowCost, setFaster, setOptimal }) => {
     <div className={classes['filters-sales']}>
       <ul className={classes['filters-sales-list']}>
         <li
-          className={state.lowCost ? classes['filters-sales-item__active'] : classes['filters-sales-item']}
+          className={state.tabs.lowCost ? classes['filters-sales-item__active'] : classes['filters-sales-item']}
           onClick={() => setLowCost()}
         >
           САМЫЙ ДЕШЕВЫЙ
         </li>
         <li
-          className={state.faster ? classes['filters-sales-item__active'] : classes['filters-sales-item']}
+          className={state.tabs.faster ? classes['filters-sales-item__active'] : classes['filters-sales-item']}
           onClick={() => setFaster()}
         >
           САМЫЙ БЫСТРЫЙ
         </li>
         <li
-          className={state.optimal ? classes['filters-sales-item__active'] : classes['filters-sales-item']}
+          className={state.tabs.optimal ? classes['filters-sales-item__active'] : classes['filters-sales-item']}
           onClick={() => setOptimal()}
         >
           ОПТИМАЛЬНЫЙ

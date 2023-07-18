@@ -1,13 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-import { reducerTabs } from './components/store/Tabs/TabsReduser';
-// import { reducerFiltersTransfers } from './components/store/FiltersTransfers/FiltersTransfersReducer';
+import { store } from './components/store/store';
 import App from './components/App/App';
-// const store = createStore(reducerFiltersTransfers);
-const store = createStore(reducerTabs);
 ReactDOM.render(
   <Provider store={store}>
     <App />

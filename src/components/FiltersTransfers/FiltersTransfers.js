@@ -20,7 +20,13 @@ const FiltersTransfers = ({
           <p>КОЛИЧЕСТВО ПЕРЕСАДОК</p>
         </li>
         <li className={classes['item-filter']}>
-          <input type="checkbox" id="all" name="all" checked={state.allTickets} onChange={() => setAllTikets()} />
+          <input
+            type="checkbox"
+            id="all"
+            name="all"
+            checked={state.filters.allTickets}
+            onChange={() => setAllTikets()}
+          />
           <label htmlFor="all">Все</label>
         </li>
         <li className={classes['item-filter']}>
@@ -28,7 +34,7 @@ const FiltersTransfers = ({
             type="checkbox"
             id="withoutTransfers"
             name="withoutTransfers"
-            checked={state.notTransfer}
+            checked={state.filters.notTransfer}
             onChange={() => setNotTransfer()}
           />
           <label htmlFor="withoutTransfers">Без пересадок</label>
@@ -38,7 +44,7 @@ const FiltersTransfers = ({
             type="checkbox"
             id="oneTransfer"
             name="oneTransfer"
-            checked={state.oneTransfer}
+            checked={state.filters.oneTransfer}
             onChange={() => setOneTransfer()}
           />
           <label htmlFor="oneTransfer">1 пересадка</label>
@@ -48,7 +54,7 @@ const FiltersTransfers = ({
             type="checkbox"
             id="twoTransfer"
             name="twoTransfer"
-            checked={state.twoTransfer}
+            checked={state.filters.twoTransfer}
             onChange={() => setTwoTransfer()}
           />
           <label htmlFor="twoTransfer">2 пересадки</label>
@@ -58,7 +64,7 @@ const FiltersTransfers = ({
             type="checkbox"
             id="threeTransfer"
             name="threeTransfer"
-            checked={state.threeTransfer}
+            checked={state.filters.threeTransfer}
             onChange={() => setThreeTransfer()}
           />
           <label htmlFor="threeTransfer">3 пересадки</label>
