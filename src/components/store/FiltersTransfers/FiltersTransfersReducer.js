@@ -7,7 +7,6 @@ const defaultState = {
 };
 
 export const reducerFiltersTransfers = (state = defaultState, action) => {
-  console.log(action, state);
   switch (action.type) {
     case 'SET_ALL_TIKETS':
       if (!state.allTickets) {

@@ -1,5 +1,5 @@
 // import { useState, useRef } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 
 import * as actions from '../store/FiltersTransfers/FiltersTransfersActions';
 
@@ -13,9 +13,6 @@ const FiltersTransfers = ({
   setTwoTransfer,
   setThreeTransfer,
 }) => {
-  //   const dispatch = useDispatch;
-  const filter = useSelector((state) => state.filter);
-  console.log(filter);
   return (
     <div className={classes['filters-transfers']}>
       <ul className={classes['list-filters']}>
