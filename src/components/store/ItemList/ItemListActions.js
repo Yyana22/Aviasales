@@ -5,8 +5,8 @@ export const addTicketsStarted = () => {
     type: 'ADD_TICKETS_START',
   };
 };
-export const addNewTickets = (tickets, step) => {
-  tickets = tickets.slice(0, step);
+export const addNewTickets = (tickets) => {
+  const step = 5;
   return {
     type: 'ADD_NEW_TICKETS',
     tickets: [...tickets],
@@ -27,25 +27,21 @@ export const getNewTickets = () => async (dispatch) => {
   try {
     if (tiketsServise.searchId === null) {
       await tiketsServise.getSearchId();
-      console.log(tiketsServise.searchId, ' /action');
     }
     const result = await tiketsServise.getPackTikets();
     const { tickets, stop } = result;
-    console.log(tickets.length, ' //lengthTickets');
     dispatch(addNewTickets(tickets));
     if (stop) {
       dispatch(setLoading());
     }
 
     if (!stop) {
-      console.log(stop, ' /stop');
       dispatch(getNewTickets());
     }
   } catch (error) {
     if (error instanceof TypeError) {
       dispatch(getNewTickets());
     } else {
-      console.log(error);
       dispatch(setError(error));
     }
   }
