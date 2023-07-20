@@ -6,7 +6,7 @@ const defaultState = {
   threeTransfer: true,
 };
 
-export const reducerFiltersTransfers = (state = defaultState, action) => {
+const reducerFiltersTransfers = (state = defaultState, action) => {
   switch (action.type) {
     case 'SET_ALL_TIKETS':
       if (!state.allTickets) {
@@ -80,3 +80,5 @@ export const reducerFiltersTransfers = (state = defaultState, action) => {
       return state;
   }
 };
+
+export default reducerFiltersTransfers;

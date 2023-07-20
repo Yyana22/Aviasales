@@ -2,3 +2,21 @@
 	list-style: none;
 	padding: 0;
 }
+
+.appBtn{
+	background-color: #2196F3;
+	color: #ffff;
+	display: flex;
+	width: 502px;
+	height: 50px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	border: none;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.appBtn:hover{
+	background-color: #4295da;
+}

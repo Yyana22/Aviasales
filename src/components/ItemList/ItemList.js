@@ -1,70 +1,37 @@
-// import { useState, useRef } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+// import * as actions from '../store/ItemList/ItemListActions';
+import { getNewTickets } from '../store/ItemList/ItemListActions';
 import Item from '../Item/Item';
 
 import classes from './ItemList.module.scss';
 const ItemList = () => {
-  const arr = [
-    {
-      sale: '12300 P',
-      wayOut: 'MOW',
-      wayIn: 'HKT',
-      timeOut: '10:45',
-      timeIn: '21:45',
-      time: '21ч 15м',
-      transfers: ['HYJ', 'ADS'],
-      logo: 'dddsadasdq',
-    },
-    {
-      sale: '12100 P',
-      wayOut: 'Masd',
-      wayIn: 'HKT',
-      timeOut: '10:45',
-      timeIn: '21:45',
-      time: '21ч 15м',
-      transfers: ['HYJ', 'ADS'],
-      logo: 'dddsadasdq',
-    },
-    {
-      sale: '12300 P',
-      wayOut: 'MOW',
-      wayIn: 'HKT',
-      timeOut: '10:45',
-      timeIn: '21:45',
-      time: '21ч 15м',
-      transfers: ['HYJ', 'ADS'],
-      logo: 'dddsadasdq',
-    },
-    {
-      sale: '13300 P',
-      wayOut: 'MOW',
-      wayIn: 'HKT',
-      timeOut: '10:00',
-      timeIn: '21:25',
-      time: '20ч 11м',
-      transfers: ['HYJ'],
-      logo: 'ssssadasdq',
-    },
-    {
-      sale: '3300 P',
-      wayOut: 'MOW',
-      wayIn: 'HKT',
-      timeOut: '10:00',
-      timeIn: '11:25',
-      time: '1ч 25м',
-      transfers: ['HYJ', 'XCD'],
-      logo: 'aasadasdq',
-    },
-  ];
-  let id = 0;
-  let elements = arr.map((item) => {
-    id += 1;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    console.log('ADSSAA');
+    dispatch(getNewTickets());
+  }, []);
+  let propsBtn = useSelector((state) => state.itemList);
+  if (propsBtn.tickets) {
+    let id = 0;
+    let elements = propsBtn.tickets.map((item) => {
+      id += 1;
+      return (
+        <li key={id} className={classes['item']}>
+          <Item props={item}></Item>
+        </li>
+      );
+    });
     return (
-      <li key={id} className={classes['item']}>
-        <Item props={item}></Item>
-      </li>
+      <div>
+        <ul className={classes['list']}>{elements}</ul>
+        <button className={classes.appBtn} onClick={() => getNewTickets()}>
+          ПОКАЗАТЬ ЕЩЕ 5 БИЛЕТОВ!
+        </button>
+      </div>
     );
-  });
-  return <ul className={classes['list']}>{elements}</ul>;
+  }
 };
 
 export default ItemList;
