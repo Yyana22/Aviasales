@@ -29,7 +29,7 @@ const Item = (props) => {
   return (
     <div className={classes.item}>
       <div className={classes['item-saleLogo']}>
-        <p>{price}</p>
+        <p>{price} Р</p>
         <img src={`//pics.avs.io/99/36/${carrier}.png`} />
       </div>
       <div className={classes['item-body']}>
@@ -37,7 +37,7 @@ const Item = (props) => {
           <div className={classes['item-body-way']}>{`${segments[0].origin} - ${segments[0].destination}`}</div>
           <div>В ПУТИ</div>
           <div className={classes['item-body-transfers-count']}>
-            {segments[0].stops.length} {countStops(segments[0].stops.length)}
+            {segments[0].stops.length ? segments[0].stops.length : null} {countStops(segments[0].stops.length)}
           </div>
         </div>
         <div className={classes['item-body-info']}>
@@ -51,12 +51,11 @@ const Item = (props) => {
           <div className={classes['item-body-way']}>{`${segments[0].origin} - ${segments[0].destination}`}</div>
           <div>В ПУТИ</div>
           <div className={classes['item-body-transfers-count']}>
-            {segments[1].stops.length} {countStops(segments[1].stops.length)}
+            {segments[1].stops.length ? segments[1].stops.length : null} {countStops(segments[1].stops.length)}
           </div>
         </div>
         <div className={classes['item-body-info']}>
           <div className={classes['item-body-time']}>
-            {' '}
             {segments[1].date ? sumDate(segments[1].date, segments[1].duration) : null}
           </div>
           <div>{time(segments[1].duration)}</div>
