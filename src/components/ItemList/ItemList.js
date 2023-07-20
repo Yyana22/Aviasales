@@ -13,10 +13,56 @@ const ItemList = () => {
     dispatch(getNewTickets());
   }, []);
   let step = useSelector((state) => state.button.step);
+  let filters = useSelector((state) => state.filters);
+  let tabs = useSelector((state) => state.tabs);
+  //   let viewTickets;
+  //!filters
+  let searchFilters = Object.entries(filters).filter((item) => {
+    return item[1] ? item[0] : null;
+  });
+  let selectedFilters = [];
+  for (let i = 0; i < searchFilters.length; i++) {
+    selectedFilters.push(searchFilters[i][0]);
+  }
+  console.log(selectedFilters);
+  //   switch (selectedFilters) {
+  //     case selectedFilters.indexOf('allTickets'):
+  //       viewTickets = propsItem.tickets;
+  // 	case
+  //   }
+  //!tabs
+  //   let tabsTickets;
+  //   tabsTickets = propsItem.tickets.sort()
+  if (tabs.lowCost) {
+    propsItem.tickets.sort(function (a, b) {
+      if (a.price < b.price) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+  } else if (tabs.faster) {
+    propsItem.tickets.sort(function (a, b) {
+      if (a.segments[0].duration < b.segments[0].duration && a.segments[1].duration < b.segments[1].duration) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+  } else if (tabs.optimal) {
+    propsItem.tickets.sort(function (a) {
+      if (a.segments[0].stops.length == 0 && a.price < 30000) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+  }
   if (propsItem.tickets) {
     let id = 0;
     let elements = propsItem.tickets.slice(0, step).map((item) => {
       id += 1;
+      console.log(item);
       return (
         <li key={id} className={classes['item']}>
           <Item props={item}></Item>
