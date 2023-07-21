@@ -6,9 +6,6 @@
 body{
 	width: 760px;
 }
-.aviasales-app{
-	background-color: green;
-}
 
 .logo{
 	height: 160px;
@@ -23,9 +20,15 @@ body{
 
 .main{
 	display: flex;
+	margin-top: 20px;
 }
 
 
 .wrapList {
-	width: 600px;
+	width: 620px;
+}
+
+.load{
+	font-size: 30px;
+	margin-left: 47%;
 }

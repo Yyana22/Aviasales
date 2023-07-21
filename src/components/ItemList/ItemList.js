@@ -15,7 +15,7 @@ const ItemList = () => {
   let step = useSelector((state) => state.button.step);
   let filters = useSelector((state) => state.filters);
   let tabs = useSelector((state) => state.tabs);
-  //   let viewTickets;
+  let viewTickets = [];
   //!filters
   let searchFilters = Object.entries(filters).filter((item) => {
     return item[1] ? item[0] : null;
@@ -24,17 +24,33 @@ const ItemList = () => {
   for (let i = 0; i < searchFilters.length; i++) {
     selectedFilters.push(searchFilters[i][0]);
   }
-  console.log(selectedFilters);
-  //   switch (selectedFilters) {
-  //     case selectedFilters.indexOf('allTickets'):
-  //       viewTickets = propsItem.tickets;
-  // 	case
-  //   }
+  //!filter viewTickets
+  if (selectedFilters.includes('allTickets') === -1) {
+    if (selectedFilters.includes('notTransfer')) {
+      let filtred = propsItem.tickets.filter((item) => console.log(item));
+      viewTickets = [viewTickets, ...filtred];
+    } else if (selectedFilters.includes('oneTransfer')) {
+      let filtred = propsItem.tickets.filter(
+        (item) => item.segments[0].stops.length === 1 || item.segments[1].stops.length === 1
+      );
+      viewTickets = [viewTickets, ...filtred];
+    } else if (selectedFilters.includes('twoTransfer')) {
+      let filtred = propsItem.tickets.filter(
+        (item) => item.segments[0].stops.length === 2 || item.segments[1].stops.length === 2
+      );
+      viewTickets = [viewTickets, ...filtred];
+    } else if (selectedFilters.includes('threeTransfer')) {
+      let filtred = propsItem.tickets.filter(
+        (item) => item.segments[0].stops.length === 3 || item.segments[1].stops.length === 3
+      );
+      viewTickets = [viewTickets, ...filtred];
+    }
+  } else {
+    viewTickets = [...propsItem.tickets];
+  }
   //!tabs
-  //   let tabsTickets;
-  //   tabsTickets = propsItem.tickets.sort()
   if (tabs.lowCost) {
-    propsItem.tickets.sort(function (a, b) {
+    viewTickets.sort(function (a, b) {
       if (a.price < b.price) {
         return -1;
       } else {
@@ -42,7 +58,7 @@ const ItemList = () => {
       }
     });
   } else if (tabs.faster) {
-    propsItem.tickets.sort(function (a, b) {
+    viewTickets.sort(function (a, b) {
       if (a.segments[0].duration < b.segments[0].duration && a.segments[1].duration < b.segments[1].duration) {
         return -1;
       } else {
@@ -50,19 +66,18 @@ const ItemList = () => {
       }
     });
   } else if (tabs.optimal) {
-    propsItem.tickets.sort(function (a) {
-      if (a.segments[0].stops.length == 0 && a.price < 30000) {
+    viewTickets.sort(function (a) {
+      if ((a.segments[0].stops.length == 0 || a.segments[1].stops.length == 0) && a.price < 30000) {
         return -1;
       } else {
         return 1;
       }
     });
   }
-  if (propsItem.tickets) {
+  if (viewTickets) {
     let id = 0;
-    let elements = propsItem.tickets.slice(0, step).map((item) => {
+    let elements = viewTickets.slice(0, step).map((item) => {
       id += 1;
-      console.log(item);
       return (
         <li key={id} className={classes['item']}>
           <Item props={item}></Item>
