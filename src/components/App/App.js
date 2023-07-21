@@ -10,7 +10,6 @@ import * as actions from '../store/ItemList/ItemListActions';
 import classes from './App.module.scss';
 const App = () => {
   let load = useSelector((state) => state.itemList.loading);
-  console.log(load);
   let loader = load ? <LoadingOutlined className={classes.load}></LoadingOutlined> : null;
   return (
     <div className={classes['aviasales-app']}>

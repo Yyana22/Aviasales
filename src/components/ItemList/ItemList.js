@@ -20,31 +20,30 @@ const ItemList = () => {
   let searchFilters = Object.entries(filters).filter((item) => {
     return item[1] ? item[0] : null;
   });
+  let idFiltersArr = [];
   let selectedFilters = [];
   for (let i = 0; i < searchFilters.length; i++) {
     selectedFilters.push(searchFilters[i][0]);
+    if (selectedFilters[i] == 'allTickets') {
+      idFiltersArr.push(-1);
+    } else if (selectedFilters[i] == 'notTransfer') {
+      idFiltersArr.push(0);
+    } else if (selectedFilters[i] === 'oneTransfer') {
+      idFiltersArr.push(1);
+    } else if (selectedFilters[i] === 'twoTransfer') {
+      idFiltersArr.push(2);
+    } else if (selectedFilters[i] === 'threeTransfer') {
+      idFiltersArr.push(3);
+    }
   }
   //!filter viewTickets
-  if (selectedFilters.includes('allTickets') === -1) {
-    if (selectedFilters.includes('notTransfer')) {
-      let filtred = propsItem.tickets.filter((item) => console.log(item));
-      viewTickets = [viewTickets, ...filtred];
-    } else if (selectedFilters.includes('oneTransfer')) {
-      let filtred = propsItem.tickets.filter(
-        (item) => item.segments[0].stops.length === 1 || item.segments[1].stops.length === 1
+  if (!idFiltersArr.includes(-1)) {
+    let newArr = propsItem.tickets.filter((item) => {
+      return (
+        idFiltersArr.includes(item.segments[0].stops.length) && idFiltersArr.includes(item.segments[1].stops.length)
       );
-      viewTickets = [viewTickets, ...filtred];
-    } else if (selectedFilters.includes('twoTransfer')) {
-      let filtred = propsItem.tickets.filter(
-        (item) => item.segments[0].stops.length === 2 || item.segments[1].stops.length === 2
-      );
-      viewTickets = [viewTickets, ...filtred];
-    } else if (selectedFilters.includes('threeTransfer')) {
-      let filtred = propsItem.tickets.filter(
-        (item) => item.segments[0].stops.length === 3 || item.segments[1].stops.length === 3
-      );
-      viewTickets = [viewTickets, ...filtred];
-    }
+    });
+    viewTickets = [...newArr];
   } else {
     viewTickets = [...propsItem.tickets];
   }
