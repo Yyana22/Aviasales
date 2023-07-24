@@ -37,16 +37,19 @@ const ItemList = () => {
     }
   }
   //!filter viewTickets
-  if (!idFiltersArr.includes(-1)) {
-    let newArr = propsItem.tickets.filter((item) => {
-      return (
-        idFiltersArr.includes(item.segments[0].stops.length) && idFiltersArr.includes(item.segments[1].stops.length)
-      );
-    });
-    viewTickets = [...newArr];
-  } else {
-    viewTickets = [...propsItem.tickets];
-  }
+  const funkFilterViewTickets = (idFiltersArr) => {
+    if (!idFiltersArr.includes(-1)) {
+      let newArr = propsItem.tickets.filter((item) => {
+        return (
+          idFiltersArr.includes(item.segments[0].stops.length) && idFiltersArr.includes(item.segments[1].stops.length)
+        );
+      });
+      return [...newArr];
+    }
+    return [...propsItem.tickets];
+  };
+
+  viewTickets = funkFilterViewTickets(idFiltersArr);
   //!tabs
   if (tabs.lowCost) {
     viewTickets.sort(function (a, b) {
@@ -74,11 +77,9 @@ const ItemList = () => {
     });
   }
   if (viewTickets) {
-    let id = 0;
     let elements = viewTickets.slice(0, step).map((item) => {
-      id += 1;
       return (
-        <li key={id} className={classes['item']}>
+        <li key={Math.random() * 1000000} className={classes['item']}>
           <Item props={item}></Item>
         </li>
       );
@@ -92,6 +93,7 @@ const ItemList = () => {
       </div>
     );
   }
+  return null;
 };
 
 export default ItemList;
