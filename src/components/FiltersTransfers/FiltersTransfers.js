@@ -17,7 +17,7 @@ const FiltersTransfers = ({
     <div className={classes['filters-transfers']}>
       <ul className={classes['list-filters']}>
         <li className={classes['item-filter-title']}>
-          <p>КОЛИЧЕСТВО ПЕРЕСАДОК</p>
+          <p>количество пересадок</p>
         </li>
         <li className={classes['item-filter']}>
           <input

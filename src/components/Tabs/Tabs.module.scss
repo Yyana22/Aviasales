@@ -22,7 +22,9 @@
 	font-size: 12px; 
 	border: 1px solid #DFE5EC;
 	cursor: pointer;
+	text-transform: uppercase;
 	&__active{
+		text-transform: uppercase;
 		margin: 0;
 		box-sizing: border-box;
 		width: 167px;

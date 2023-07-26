@@ -18,7 +18,7 @@ const Tabs = ({ state, setLowCost, setFaster, setOptimal }) => {
             disabled={state.tabs.lowCost}
             onClick={() => setLowCost()}
           >
-            САМЫЙ ДЕШЕВЫЙ
+            самый дешевый
           </button>
         </li>
         <li className={classes['filters-sales-item']}>
@@ -31,7 +31,7 @@ const Tabs = ({ state, setLowCost, setFaster, setOptimal }) => {
             disabled={state.tabs.faster}
             onClick={() => setFaster()}
           >
-            САМЫЙ БЫСТРЫЙ
+            самый быстрый
           </button>
         </li>
         <li className={classes['filters-sales-item']}>
@@ -41,10 +41,10 @@ const Tabs = ({ state, setLowCost, setFaster, setOptimal }) => {
                 ? `${classes['filters-sales-button__active']} ${classes['three-btn']}`
                 : `${classes['filters-sales-button']} ${classes['three-btn']}`
             }
-            // disabled={state.tabs.optimal}
+            disabled={state.tabs.optimal}
             onClick={() => setOptimal()}
           >
-            ОПТИМАЛЬНЫЙ
+            оптимальный
           </button>
         </li>
       </ul>
