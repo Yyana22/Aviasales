@@ -1,5 +1,4 @@
 .filters-sales {
-	// background-color: rgb(17, 0, 255);
 	height: 50px;
 	margin-bottom: 20px;
 }
@@ -14,25 +13,15 @@
 	border-radius: 5px;
 }
 
-
-.filters-sales-item{
-	margin: 0;
-	box-sizing: border-box;
-	width: 167px;
+.filters-sales-button{
 	height: 100%;
+	width: 100%;
+	border: none;
+	background-color: #E5E5E5;
+	color: #000;
 	font-size: 12px; 
 	border: 1px solid #DFE5EC;
-	padding: 15px;
-	text-align: center;
 	cursor: pointer;
-	&:nth-child(1){
-		border-top-left-radius: 5px;
-		border-bottom-left-radius: 5px;
-	}
-	&:nth-child(3){
-		border-top-right-radius: 5px;
-		border-bottom-right-radius: 5px;
-	}
 	&__active{
 		margin: 0;
 		box-sizing: border-box;
@@ -44,13 +33,21 @@
 		cursor: pointer;
 		background-color: #2196F3;
 		color: #fff;
-		&:nth-child(1){
-			border-top-left-radius: 5px;
-			border-bottom-left-radius: 5px;
-		}
-		&:nth-child(3){
-			border-top-right-radius: 5px;
-			border-bottom-right-radius: 5px;
-		}
 	}
+}
+.one-btn {
+	border-top-left-radius: 5px;
+ 	border-bottom-left-radius: 5px;
+}
+
+.three-btn{
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.filters-sales-item{
+	margin: 0;
+	box-sizing: border-box;
+	width: 167px;
+	height: 100%;
+	text-align: center;
 }
